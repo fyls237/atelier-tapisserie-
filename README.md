@@ -1,10 +1,19 @@
-# Atelier de Tapisserie et Menuiserie
+# Atelier Tapisserie - Yaoundé
 
-> Système de gestion d'atelier artisanal basé à Yaoundé, Cameroun
+Application web MVP pour la gestion d'un atelier de menuiserie/tapisserie.
+Projet Monorepo : FastAPI (Backend) + React (Frontend).
 
-## 📋 Description du Produit
+## Structure
+- `/backend` : API REST (FastAPI, SQLAlchemy, SQLite).
+- `/frontend` : Interface Utilisateur (React, Vite, Tailwind CSS).
 
-Ce projet est dédié à la gestion d'un atelier de menuiserie et tapisserie situé à Yaoundé, au Cameroun. L'atelier se spécialise dans la fabrication et la réparation de meubles sur mesure, avec une gestion administrative et opérationnelle pilotée à distance depuis l'Europe.
+## Installation
+Voir les fichiers README spécifiques dans chaque dossier pour les instructions détaillées.
+
+## Stack Technique
+- **Backend** : FastAPI, SQLite
+- **Frontend** : React, Tailwind, Vite
+- **Auth** : JWT (Simple Admin/Manager)
 
 ### Vision
 
