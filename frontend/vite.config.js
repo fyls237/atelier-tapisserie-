@@ -13,6 +13,9 @@ export default defineConfig({
     server: {
         host: true, // Écoute sur 0.0.0.0 pour Docker
         port: 5173,
+        watch: {
+            usePolling: true,
+        },
         proxy: {
             '/api': {
                 target: 'http://backend:8000', // Via le réseau Docker
