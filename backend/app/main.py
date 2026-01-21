@@ -1,9 +1,10 @@
 from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
 from contextlib import asynccontextmanager
 from sqlalchemy.orm import Session
 import os
 from .database import engine, SessionLocal, Base
-from .routers import auth
+from .routers import auth, products
 from .models import User, UserRole
 from .security import get_password_hash
 
@@ -47,8 +48,12 @@ app = FastAPI(
     lifespan=lifespan
 )
 
+# Montage des fichiers statiques (Images)
+app.mount("/static", StaticFiles(directory="app/static"), name="static")
+
 # --- ROUTERS ---
 app.include_router(auth.router)
+app.include_router(products.router)
 
 @app.get("/")
 def read_root():
