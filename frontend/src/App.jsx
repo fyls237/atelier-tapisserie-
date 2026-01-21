@@ -7,6 +7,9 @@ import PublicLayout from './layouts/PublicLayout';
 import Home from './pages/Home';
 import Catalog from './pages/Catalog';
 
+import AdminLayout from './layouts/AdminLayout';
+import Finance from './pages/admin/Finance';
+
 function App() {
     return (
         <AuthProvider>
@@ -22,8 +25,10 @@ function App() {
                     <Route path="/login" element={<Login />} />
 
                     <Route path="/admin" element={<ProtectedRoute />}>
-                        <Route index element={<Dashboard />} />
-                        {/* Autres routes admin ici */}
+                        <Route element={<AdminLayout />}>
+                            <Route index element={<Dashboard />} />
+                            <Route path="finance" element={<Finance />} />
+                        </Route>
                     </Route>
 
                     {/* Fallback */}

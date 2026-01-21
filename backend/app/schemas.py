@@ -56,7 +56,8 @@ class SaleBase(BaseModel):
     product_id: Optional[int] = None
 
 class SaleCreate(SaleBase):
-    pass
+    quantity: int = 1
+    created_at: Optional[datetime] = None
 
 class SaleResponse(SaleBase):
     id: int
@@ -71,10 +72,10 @@ class ExpenseBase(BaseModel):
     amount: float
     description: str
     category: Optional[str] = None
-    date: datetime = datetime.utcnow()
+    date: datetime = None # Allow default but can be overridden
 
 class ExpenseCreate(ExpenseBase):
-    pass
+     date: Optional[datetime] = None
 
 class ExpenseResponse(ExpenseBase):
     id: int

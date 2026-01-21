@@ -4,7 +4,7 @@ from contextlib import asynccontextmanager
 from sqlalchemy.orm import Session
 import os
 from .database import engine, SessionLocal, Base
-from .routers import auth, products
+from .routers import auth, products, finance
 from .models import User, UserRole
 from .security import get_password_hash
 
@@ -54,6 +54,7 @@ app.mount("/static", StaticFiles(directory="app/static"), name="static")
 # --- ROUTERS ---
 app.include_router(auth.router)
 app.include_router(products.router)
+app.include_router(finance.router)
 
 @app.get("/")
 def read_root():
