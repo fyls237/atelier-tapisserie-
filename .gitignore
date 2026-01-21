@@ -142,8 +142,16 @@ vite.config.ts.timestamp-*
 __pycache__/
 *.py[cod]
 *$py.class
+*.py[cod]
+*\$py.class
+*.py[cod]
+*\$py.class
 venv/
 .venv/
 *.db
 *.sqlite3
 .env
+backend/app/static/images/*
+!backend/app/static/images/.gitkeep
+backend/app/static/images/*
+!backend/app/static/images/.gitkeep
