@@ -99,11 +99,13 @@ Ce projet vise à :
 
 ## 📞 Contact
 
-Pour toute question ou suggestion concernant ce projet, veuillez contacter l'équipe de développement.
+Pour toute question ou suggestion concernant ce projet :
+- Ouvrez une issue sur GitHub
+- Contactez le propriétaire du dépôt : [@fyls237](https://github.com/fyls237)
 
 ## 📝 Licence
 
-À définir
+Ce projet est actuellement privé. La licence sera définie ultérieurement en fonction des besoins du projet.
 
 ---
 
