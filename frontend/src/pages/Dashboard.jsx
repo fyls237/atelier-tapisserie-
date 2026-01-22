@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import api from '../lib/axios';
-import { Plus, Pencil, Trash2, LogOut } from 'lucide-react';
+import { Plus, Pencil, Trash2 } from 'lucide-react';
 import ProductForm from '../components/ProductForm';
 
 export default function Dashboard() {
@@ -55,26 +55,7 @@ export default function Dashboard() {
 
     return (
         <div className="min-h-screen bg-gray-100">
-            {/* Navbar */}
-            <nav className="bg-white shadow-sm sticky top-0 z-10">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex justify-between h-16">
-                        <div className="flex items-center">
-                            <h1 className="text-xl font-bold text-gray-800">Atelier Tapisserie - Admin</h1>
-                        </div>
-                        <div className="flex items-center space-x-4">
-                            <span className="text-gray-500 text-sm hidden sm:block">Admin</span>
-                            <button
-                                onClick={logout}
-                                className="flex items-center text-gray-600 hover:text-red-600 transition"
-                                title="Déconnexion"
-                            >
-                                <LogOut size={20} />
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </nav>
+            {/* Navbar supprimée (gérée par AdminLayout) */}
 
             <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
                 {/* Header Actions */}
