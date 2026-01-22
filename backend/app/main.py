@@ -12,6 +12,27 @@ from .security import get_password_hash
 # Remplace l'ancien @app.on_event("startup")
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    # 0. Attendre que la DB soit prête
+    import time
+    from sqlalchemy.exc import OperationalError
+    
+    max_retries = 10
+    retry_interval = 2
+    
+    for i in range(max_retries):
+        try:
+            # Tester la connexion
+            with engine.connect() as connection:
+                print("INFO: Database connection established.")
+                break
+        except OperationalError as e:
+            if i < max_retries - 1:
+                print(f"WARN: Database not ready yet ({e}). Retrying in {retry_interval}s... ({i+1}/{max_retries})")
+                time.sleep(retry_interval)
+            else:
+                print("ERROR: Could not connect to database after multiple retries.")
+                raise e
+
     # 1. Création des tables
     Base.metadata.create_all(bind=engine)
     
