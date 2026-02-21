@@ -54,7 +54,7 @@ export default function ProductDetail() {
     );
     const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
 
-    const inStock = product.stock > 0;
+    const inStock = typeof product.stock === 'number' && product.stock > 0;
 
     return (
         <div className="bg-white min-h-screen">
