@@ -1,27 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, Star, Scissors, Palette, MessageCircle } from 'lucide-react';
 import { WHATSAPP_NUMBER } from '../lib/constants';
-
-const testimonials = [
-    {
-        name: 'Paul M.',
-        city: 'Yaoundé',
-        rating: 5,
-        text: 'Travail impeccable pour mon salon. La qualité du tissu et la finition du bois sont exceptionnelles. Je recommande vivement !',
-    },
-    {
-        name: 'Chantal N.',
-        city: 'Douala',
-        rating: 5,
-        text: 'J\'ai fait refaire mon canapé et mes chaises de salle à manger. Résultat bluffant, on dirait du neuf. Merci à toute l\'équipe.',
-    },
-    {
-        name: 'Jean-Pierre K.',
-        city: 'Yaoundé',
-        rating: 5,
-        text: 'Service rapide et professionnel. Ma tête de lit capitonnée est magnifique. Le rapport qualité-prix est imbattable.',
-    },
-];
+import { testimonials } from '../lib/constants';
 
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
     'Bonjour, j\'aimerais discuter d\'un projet avec vous.'
@@ -34,13 +14,21 @@ export default function Home() {
                 HERO — Plein écran avec image d'ambiance
             ═══════════════════════════════════════ */}
             <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
-                {/* Background image */}
+                {/* Background image with fallback */}
+                <div
+                    className="absolute inset-0 w-full h-full bg-gradient-to-br from-slate-900 via-slate-800 to-amber-900"
+                    aria-hidden="true"
+                />
                 <img
                     src="/hero-home.png"
                     alt="Salon moderne africain"
                     className="absolute inset-0 w-full h-full object-cover"
+                    loading="eager"
+                    onError={(e) => {
+                        e.currentTarget.style.display = 'none';
+                    }}
                 />
-                {/* Gradient overlay */}
+                {/* Overlay */}
                 <div className="absolute inset-0 bg-black/50"></div>
 
                 {/* Content */}
@@ -75,7 +63,6 @@ export default function Home() {
                         </a>
                     </div>
                 </div>
-
             </section>
 
             {/* ═══════════════════════════════════════
@@ -144,18 +131,23 @@ export default function Home() {
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        {testimonials.map((t, i) => (
+                        {testimonials.map((t) => (
                             <div
-                                key={i}
+                                key={t.id}
                                 className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300"
                             >
                                 {/* Stars */}
-                                <div className="flex gap-1 mb-4">
+                                <div
+                                    className="flex gap-1 mb-4"
+                                    role="img"
+                                    aria-label={`Note : ${t.rating} étoiles sur 5`}
+                                >
                                     {Array.from({ length: t.rating }).map((_, j) => (
                                         <Star
                                             key={j}
                                             size={18}
                                             className="fill-amber-400 text-amber-400"
+                                            aria-hidden="true"
                                         />
                                     ))}
                                 </div>

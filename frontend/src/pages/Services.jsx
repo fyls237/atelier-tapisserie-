@@ -16,6 +16,7 @@ import { WHATSAPP_NUMBER } from '../lib/constants';
 
 const services = [
     {
+        id: 'creation-sur-mesure',
         icon: Sofa,
         emoji: '🛋️',
         title: 'Création Sur-Mesure',
@@ -24,6 +25,7 @@ const services = [
             'Du design à la finition, nous confectionnons des salons modernes et confortables qui reflètent votre style. Un travail de tapisserie minutieux pour un rendu haut de gamme.',
     },
     {
+        id: 'lits-espaces-nuit',
         icon: BedDouble,
         emoji: '🛏️',
         title: 'Lits & Espaces Nuit',
@@ -32,6 +34,7 @@ const services = [
             'Confection de lits design, têtes de lit capitonnées et sommiers robustes. Nous allions l\'esthétique au confort pour transformer votre chambre en un véritable palace.',
     },
     {
+        id: 'salles-a-manger',
         icon: UtensilsCrossed,
         emoji: '🍽️',
         title: 'Salles à Manger',
@@ -40,6 +43,7 @@ const services = [
             'Des ensembles de chaises et tables élégants pour faire de vos repas de véritables moments de convivialité, avec des finitions en bois massif et des assises durables.',
     },
     {
+        id: 'refection-seconde-vie',
         icon: Recycle,
         emoji: '♻️',
         title: 'Réfection & Seconde Vie',
@@ -48,6 +52,7 @@ const services = [
             'Ne jetez plus ! Nos maîtres tapissiers redonnent vie à vos anciens meubles. Changement de tissu, rembourrage de mousse et restauration de la structure pour un résultat comme neuf.',
     },
     {
+        id: 'vente-gros-b2b',
         icon: PackageCheck,
         emoji: '📦',
         title: 'Vente en Gros & B2B',
@@ -126,11 +131,11 @@ export default function Services() {
 
                     {/* Cards grid */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {services.map((service, index) => {
+                        {services.map((service) => {
                             const Icon = service.icon;
                             return (
                                 <div
-                                    key={index}
+                                    key={service.id}
                                     className="group bg-white rounded-2xl p-8 border border-gray-100 hover:border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1"
                                 >
                                     {/* Icon badge */}
@@ -236,7 +241,7 @@ export default function Services() {
                         className="inline-flex items-center justify-center gap-3 px-10 py-4 bg-green-500 text-white text-lg font-semibold rounded-full hover:bg-green-600 transition shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
                     >
                         <MessageCircle size={24} />
-                        Discutons-en sur WhatsApp
+                        Discutons-en sur WhatsApp 💬
                     </a>
                 </div>
             </section>

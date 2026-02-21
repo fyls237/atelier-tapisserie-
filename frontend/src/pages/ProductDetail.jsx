@@ -84,6 +84,7 @@ export default function ProductDetail() {
                                     src={product.image_url}
                                     alt={product.name}
                                     className="w-full h-full object-cover"
+                                    loading="eager"
                                 />
                             ) : (
                                 <div className="flex items-center justify-center h-full text-gray-300">
@@ -133,17 +134,17 @@ export default function ProductDetail() {
 
                             <div className="border-t border-gray-100 mb-6"></div>
 
-                            <div className="flex items-center gap-2 mb-6">
+                            <div className="flex items-center gap-2 mb-6" role="status" aria-label={inStock ? `En stock, ${product.stock} disponibles` : 'Sur commande'}>
                                 {inStock ? (
                                     <>
-                                        <CheckCircle size={18} className="text-green-500" />
+                                        <CheckCircle size={18} className="text-green-500" aria-hidden="true" />
                                         <span className="text-sm text-green-700 font-medium">
                                             En stock — {product.stock} disponible{product.stock > 1 ? 's' : ''}
                                         </span>
                                     </>
                                 ) : (
                                     <>
-                                        <XCircle size={18} className="text-amber-500" />
+                                        <XCircle size={18} className="text-amber-500" aria-hidden="true" />
                                         <span className="text-sm text-amber-700 font-medium">
                                             Sur commande — Contactez-nous
                                         </span>
@@ -171,15 +172,15 @@ export default function ProductDetail() {
                     <div className="lg:hidden mb-8">
                         <p className="text-sm text-gray-400 mb-1">{product.category || 'Mobilier'}</p>
                         <h1 className="text-2xl font-bold text-gray-900 font-serif mb-3">{product.name}</h1>
-                        <div className="flex items-center gap-2 mb-3">
+                        <div className="flex items-center gap-2 mb-3" role="status" aria-label={inStock ? 'En stock' : 'Sur commande'}>
                             {inStock ? (
                                 <>
-                                    <CheckCircle size={16} className="text-green-500" />
+                                    <CheckCircle size={16} className="text-green-500" aria-hidden="true" />
                                     <span className="text-sm text-green-700 font-medium">En stock</span>
                                 </>
                             ) : (
                                 <>
-                                    <XCircle size={16} className="text-amber-500" />
+                                    <XCircle size={16} className="text-amber-500" aria-hidden="true" />
                                     <span className="text-sm text-amber-700 font-medium">Sur commande</span>
                                 </>
                             )}
