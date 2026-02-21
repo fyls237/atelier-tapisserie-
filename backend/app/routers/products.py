@@ -1,11 +1,12 @@
 from fastapi import APIRouter, Depends, HTTPException, status, UploadFile, File, Form
 from sqlalchemy.orm import Session
+from sqlalchemy.exc import IntegrityError
 from typing import List, Optional
 import shutil
 import uuid
 import os
 from ..database import get_db
-from ..models import Product, User
+from ..models import Product, Sale, User
 from ..schemas import ProductCreate, ProductResponse, ProductUpdate
 from ..dependencies import get_current_admin_user
 
@@ -98,10 +99,31 @@ def delete_product(
     if product is None:
         raise HTTPException(status_code=404, detail="Product not found")
     
-    # Soft delete (désactivation) ou hard delete ?
-    # Ici on fait un Hard Delete pour simplifier, ou Soft delete si on toggle is_active
-    # Si image associée, on pourrait la supprimer du disque aussi.
-    
-    db.delete(product)
-    db.commit()
+    # Sauvegarder le chemin de l'image avant la suppression
+    image_url = product.image_url
+
+    try:
+        # Toutes les opérations DB dans la même transaction
+        db.query(Sale).filter(Sale.product_id == product_id).update(
+            {Sale.product_id: None}, synchronize_session="fetch"
+        )
+        db.delete(product)
+        db.commit()
+    except IntegrityError:
+        db.rollback()
+        raise HTTPException(
+            status_code=status.HTTP_409_CONFLICT,
+            detail="Impossible de supprimer ce produit : il est encore référencé par d'autres données."
+        )
+
+    # Supprimer l'image du disque APRÈS le commit réussi
+    if image_url:
+        image_path = image_url.lstrip("/")
+        full_path = os.path.join("app", image_path)
+        if os.path.exists(full_path):
+            try:
+                os.remove(full_path)
+            except OSError:
+                pass
+
     return None

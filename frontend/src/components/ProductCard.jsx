@@ -1,9 +1,9 @@
 import { MessageCircle } from 'lucide-react';
+import { WHATSAPP_NUMBER } from '../lib/constants';
 
 export default function ProductCard({ product }) {
-    const whatsappNumber = "237600000000"; // Numéro fictif
     const message = encodeURIComponent(`Bonjour, je suis intéressé par le produit : ${product.name}`);
-    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
+    const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
 
     return (
         <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col h-full group">

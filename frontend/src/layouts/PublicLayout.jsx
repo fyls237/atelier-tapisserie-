@@ -22,6 +22,9 @@ export default function PublicLayout() {
                             <Link to="/" className="text-gray-600 hover:text-amber-700 font-medium transition">
                                 Accueil
                             </Link>
+                            <Link to="/services" className="text-gray-600 hover:text-amber-700 font-medium transition">
+                                Nos Services
+                            </Link>
                             <Link to="/catalogue" className="text-gray-600 hover:text-amber-700 font-medium transition">
                                 Catalogue
                             </Link>
@@ -52,6 +55,13 @@ export default function PublicLayout() {
                                 className="block px-4 py-2 text-base font-medium text-gray-600 hover:text-amber-700 hover:bg-gray-50"
                             >
                                 Accueil
+                            </Link>
+                            <Link
+                                to="/services"
+                                onClick={() => setIsMenuOpen(false)}
+                                className="block px-4 py-2 text-base font-medium text-gray-600 hover:text-amber-700 hover:bg-gray-50"
+                            >
+                                Nos Services
                             </Link>
                             <Link
                                 to="/catalogue"
