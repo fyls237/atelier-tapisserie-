@@ -7,6 +7,7 @@ import PublicLayout from './layouts/PublicLayout';
 import Home from './pages/Home';
 import Services from './pages/Services';
 import Catalog from './pages/Catalog';
+import ProductDetail from './pages/ProductDetail';
 
 import AdminLayout from './layouts/AdminLayout';
 import Finance from './pages/admin/Finance';
@@ -21,6 +22,7 @@ function App() {
                         <Route path="/" element={<Home />} />
                         <Route path="/services" element={<Services />} />
                         <Route path="/catalogue" element={<Catalog />} />
+                        <Route path="/produit/:id" element={<ProductDetail />} />
                     </Route>
 
                     {/* Routes Admin */}
