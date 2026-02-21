@@ -12,6 +12,7 @@ import {
     HeartHandshake,
     ArrowRight,
 } from 'lucide-react';
+import { WHATSAPP_NUMBER } from '../lib/constants';
 
 const services = [
     {
@@ -56,7 +57,7 @@ const services = [
     },
 ];
 
-const WHATSAPP_NUMBER = '237600000000';
+
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
     'Bonjour, j\'aimerais discuter d\'un projet avec vous.'
 )}`;

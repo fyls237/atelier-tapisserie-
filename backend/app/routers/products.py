@@ -99,23 +99,14 @@ def delete_product(
     if product is None:
         raise HTTPException(status_code=404, detail="Product not found")
     
-    # Détacher le produit des ventes existantes (mettre product_id à NULL)
-    # Sale.product_id est nullable, donc on peut le mettre à None sans perdre les ventes
-    db.query(Sale).filter(Sale.product_id == product_id).update(
-        {Sale.product_id: None}, synchronize_session="fetch"
-    )
-    
-    # Supprimer l'image du disque si elle existe
-    if product.image_url:
-        image_path = product.image_url.lstrip("/")  # "static/images/xxx.jpg"
-        full_path = os.path.join("app", image_path)
-        if os.path.exists(full_path):
-            try:
-                os.remove(full_path)
-            except OSError:
-                pass  # Log si besoin, mais ne pas bloquer la suppression
-    
+    # Sauvegarder le chemin de l'image avant la suppression
+    image_url = product.image_url
+
     try:
+        # Toutes les opérations DB dans la même transaction
+        db.query(Sale).filter(Sale.product_id == product_id).update(
+            {Sale.product_id: None}, synchronize_session="fetch"
+        )
         db.delete(product)
         db.commit()
     except IntegrityError:
@@ -124,4 +115,15 @@ def delete_product(
             status_code=status.HTTP_409_CONFLICT,
             detail="Impossible de supprimer ce produit : il est encore référencé par d'autres données."
         )
+
+    # Supprimer l'image du disque APRÈS le commit réussi
+    if image_url:
+        image_path = image_url.lstrip("/")
+        full_path = os.path.join("app", image_path)
+        if os.path.exists(full_path):
+            try:
+                os.remove(full_path)
+            except OSError:
+                pass
+
     return None
