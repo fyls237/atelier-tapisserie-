@@ -1,4 +1,4 @@
-export const WHATSAPP_NUMBER = '237656939178';
+export const WHATSAPP_NUMBER = '237698719992';
 
 export const testimonials = [
     {
