@@ -72,22 +72,38 @@ export default function Services() {
             {/* ══════════════════════════════════════════════
                 SECTION HERO — L'esprit de l'entreprise
             ══════════════════════════════════════════════ */}
-            <section className="py-20 md:py-28 bg-white">
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <span className="inline-flex items-center gap-2 bg-gray-100 text-gray-600 text-sm font-medium px-4 py-1.5 rounded-full mb-6">
-                        <Sparkles size={16} className="text-amber-500" />
+            <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
+                {/* Background image — même image que la page Home */}
+                <div
+                    className="absolute inset-0 w-full h-full bg-gradient-to-br from-slate-900 via-slate-800 to-amber-900"
+                    aria-hidden="true"
+                />
+                <img
+                    src="/hero-home.png"
+                    alt="Atelier tapisserie"
+                    className="absolute inset-0 w-full h-full object-cover"
+                    loading="eager"
+                    onError={(e) => {
+                        e.currentTarget.style.display = 'none';
+                    }}
+                />
+                <div className="absolute inset-0 bg-black/50"></div>
+
+                <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+                    <span className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm text-white text-sm font-medium px-4 py-1.5 rounded-full mb-6 border border-white/20">
+                        <Sparkles size={16} className="text-amber-300" />
                         Excellence & Savoir-Faire
-                        <Sparkles size={16} className="text-amber-500" />
+                        <Sparkles size={16} className="text-amber-300" />
                     </span>
 
-                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-serif mb-6 leading-tight text-gray-900">
+                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-serif mb-6 leading-tight">
                         Notre Savoir-Faire,{' '}
-                        <span className="text-amber-600">Votre Satisfaction</span>
+                        <span className="text-amber-300">Votre Satisfaction</span>
                     </h1>
 
-                    <p className="text-lg md:text-xl text-gray-500 max-w-3xl mx-auto mb-10 leading-relaxed">
+                    <p className="text-lg md:text-xl text-white/80 max-w-3xl mx-auto mb-10 leading-relaxed">
                         Inspirés par l'excellence, nous concevons bien plus que des meubles&nbsp;:
-                        nous créons des <strong className="text-gray-900">espaces de vie</strong>.
+                        nous créons des <strong className="text-white">espaces de vie</strong>.
                         Notre engagement&nbsp;? Un standard de qualité irréprochable et un client
                         toujours satisfait au centre de nos processus.
                     </p>
@@ -95,7 +111,7 @@ export default function Services() {
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <Link
                             to="/catalogue"
-                            className="inline-flex items-center justify-center px-8 py-4 bg-gray-900 text-white font-semibold rounded-full hover:bg-gray-800 transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 text-base"
+                            className="inline-flex items-center justify-center px-8 py-4 bg-white text-gray-900 font-semibold rounded-full hover:bg-amber-50 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 text-base"
                         >
                             Voir le Catalogue
                             <ArrowRight className="ml-2 w-5 h-5" />
@@ -104,7 +120,7 @@ export default function Services() {
                             href={WHATSAPP_URL}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center justify-center px-8 py-4 border-2 border-gray-200 text-gray-700 font-semibold rounded-full hover:bg-gray-50 transition-all text-base"
+                            className="inline-flex items-center justify-center px-8 py-4 border-2 border-white/30 text-white font-semibold rounded-full hover:bg-white/10 transition-all text-base"
                         >
                             <MessageCircle className="mr-2 w-5 h-5" />
                             Nous Contacter
